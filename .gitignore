@@ -1,2 +1,4 @@
 volumes/
-backup/
+node_modules/
+out/
+.next/
