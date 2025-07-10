@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>后端 /api/ask 接口测试</title>
+</head>
+<body>
+  <h1>/api/ask 接口测试页面</h1>
+  <label>问题（question）：<input type="text" id="question" value="测试问题"></label><br>
+  <label>图片路径（image_path）：<input type="text" id="image_path" value="/path/to/image.jpg"></label><br>
+  <button onclick="testApi()">测试 /api/ask</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function testApi() {
+      document.getElementById('result').textContent = '请求中...';
+      const question = document.getElementById('question').value;
+      const image_path = document.getElementById('image_path').value;
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            question,
+            image_path
+          })
+        });
+        if (!response.ok) {
+          throw new Error('HTTP状态码: ' + response.status);
+        }
+        const data = await response.json();
+        document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('result').textContent = '请求失败: ' + error;
+      }
+    }
+  </script>
+</body>
+</html>

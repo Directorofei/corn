@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多智能体API测试</title>
+    <style>
+        body { font-family: "微软雅黑", Arial, sans-serif; margin: 40px; }
+        input, button { font-size: 16px; margin: 5px; }
+        textarea { width: 100%; height: 120px; margin-top: 10px; }
+        .result { background: #f6f8fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        .stream { color: #0a0; }
+    </style>
+</head>
+<body>
+    <h2>多智能体API测试</h2>
+    <div>
+        <label>问题（question）：<input id="question" type="text" value="玉米叶子发黄怎么办？"></label><br>
+        <label>图片URL（可选）：<input id="image_url" type="text" placeholder="http://..."></label><br>
+        <button onclick="callChat()">测试 /api/chat</button>
+        <button onclick="callChatStream()">测试 /api/chat/stream</button>
+    </div>
+    <h3>普通接口结果：</h3>
+    <div class="result" id="result"></div>
+    <h3>流式接口结果：</h3>
+    <div class="result stream" id="streamResult"></div>
+
+    <script>
+        function callChat() {
+            document.getElementById('result').innerText = "请求中...";
+            fetch('http://localhost:8000/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: document.getElementById('question').value,
+                    image_url: document.getElementById('image_url').value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(err => {
+                document.getElementById('result').innerText = "请求失败：" + err;
+            });
+        }
+
+        function callChatStream() {
+            document.getElementById('streamResult').innerText = "";
+            const question = encodeURIComponent(document.getElementById('question').value);
+            const image_url = encodeURIComponent(document.getElementById('image_url').value);
+            const url = `http://localhost:8000/api/chat/stream?question=${question}&image_url=${image_url}`;
+            const evtSource = new EventSource(url);
+            evtSource.onmessage = function(event) {
+                document.getElementById('streamResult').innerText += event.data + '\\n';
+            };
+            evtSource.onerror = function(err) {
+                document.getElementById('streamResult').innerText += '\\n[流式连接关闭]';
+                evtSource.close();
+            };
+        }
+    </script>
+</body>
+</html>
