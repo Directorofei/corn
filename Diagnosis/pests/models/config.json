@@ -1,0 +1,23 @@
+{
+  "data_dir": "pests/datasets",
+  "csv_path": "pests/datasets/pest_classification.csv",
+  "num_classes": 3,
+  "batch_size": 16,
+  "num_epochs": 100,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.02,
+  "warmup_epochs": 8,
+  "ema_decay": 0.999,
+  "grad_clip": 1.0,
+  "model_name": "convnext_base_in22k",
+  "save_dir": "pests/models",
+  "use_focal_loss": true,
+  "focal_gamma": 2.0,
+  "accumulate_steps": 2,
+  "use_amp": true,
+  "pin_memory": true,
+  "num_workers": 4,
+  "early_stopping_patience": 20,
+  "lr_scheduler_patience": 6,
+  "n_folds": 5
+}

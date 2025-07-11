@@ -1,0 +1,51 @@
+# 数据集文件 
+leaf/datasets/
+pests/datasets/
+
+# 训练过程中的临时模型文件（保留最终的best模型）
+checkpoint_*.pth
+epoch_*.pth
+temp_*.pth
+
+# Python缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 环境文件
+.env
+.venv
+env/
+venv/
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Gradio临时文件
+.gradio/
+gradio_cached_examples/
+
+# 训练过程文件
+wandb/
+runs/
+tensorboard_logs/ 

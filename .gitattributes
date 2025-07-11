@@ -1,0 +1,2 @@
+Diagnosis/leaf/models/*.pth filter=lfs diff=lfs merge=lfs -text
+Diagnosis/pests/models/*.pth filter=lfs diff=lfs merge=lfs -text
