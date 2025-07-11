@@ -1,0 +1,6 @@
+﻿stage_id,stage_name,description,susceptibility_level
+1,苗期,出苗至6叶期,4
+2,拔节期,开始拔节至大喇叭口期,3
+3,抽雄期,抽雄至吐丝期,5
+4,灌浆期,授粉后至乳熟期,2
+5,成熟期,蜡熟至完熟期,1

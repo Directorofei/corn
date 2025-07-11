@@ -1,0 +1,8 @@
+﻿coeff_id,condition_type,range_min,range_max,coefficient,notes
+1,temperature,,15.0,0.7,低温条件下药效降低
+2,temperature,15.0,20.0,0.9,较低温度
+3,temperature,20.0,28.0,1.2,最适病害发展温度
+4,temperature,28.0,,1.0,高温条件
+5,humidity,,70.0,0.8,干燥条件
+6,humidity,70.0,90.0,1.0,适宜湿度
+7,humidity,90.0,,1.5,高湿条件
