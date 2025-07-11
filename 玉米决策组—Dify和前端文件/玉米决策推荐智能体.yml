@@ -1,0 +1,1308 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 玉米智能体战队-决策推荐
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.6@dd589dc093c8084925858034ab5ec1fdf0d33819f43226c2f8c4a749a9acbbb2
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 2c6d5569-ebe9-49b3-9d7b-bad9dd64444e
+    name: AMAP_WEATHER_KEY
+    selector:
+    - env
+    - AMAP_WEATHER_KEY
+    value: b17865830cc99d7215733ed39f375e54
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      - document
+      - video
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: "您好！我是您的农业小助手，为了更好地帮您解决问题\n\n请描述症状或生长情况或所在地点（支持更改）\n\n    例：玉米斑病，拔节期，北京昌平\n\
+      \n    如需更改请输入：更改为（）"
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1751443339144-source-1751443362510-target
+      selected: false
+      source: '1751443339144'
+      sourceHandle: source
+      target: '1751443362510'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1751443362510-source-1751443366855-target
+      selected: false
+      source: '1751443362510'
+      sourceHandle: source
+      target: '1751443366855'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1751444057811-2-1751861116554-target
+      selected: false
+      source: '1751444057811'
+      sourceHandle: '2'
+      target: '1751861116554'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1751861116554-source-1751861264603-target
+      selected: false
+      source: '1751861116554'
+      sourceHandle: source
+      target: '1751861264603'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1751443353746-true-1751974776081-target
+      selected: false
+      source: '1751443353746'
+      sourceHandle: 'true'
+      target: '1751974776081'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: knowledge-retrieval
+      id: 1751974776081-source-1751443339144-target
+      selected: false
+      source: '1751974776081'
+      sourceHandle: source
+      target: '1751443339144'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1751443353746-false-1752029610846-target
+      selected: false
+      source: '1751443353746'
+      sourceHandle: 'false'
+      target: '1752029610846'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1752029610846-source-1751443378554-target
+      selected: false
+      source: '1752029610846'
+      sourceHandle: source
+      target: '1751443378554'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1751351389644-source-1751444057811-target
+      selected: false
+      source: '1751351389644'
+      sourceHandle: source
+      target: '1751444057811'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1751444057811-1-1752127223209-target
+      selected: false
+      source: '1751444057811'
+      sourceHandle: '1'
+      target: '1752127223209'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 1752113221567-source-1752113123348-target
+      selected: false
+      source: '1752113221567'
+      sourceHandle: source
+      target: '1752113123348'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1751444057811-1752124151349-1752127223209-target
+      selected: false
+      source: '1751444057811'
+      sourceHandle: '1752124151349'
+      target: '1752127223209'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1752127223209-source-1752113221567-target
+      selected: false
+      source: '1752127223209'
+      sourceHandle: source
+      target: '1752113221567'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1752113123348-source-1752159563290-target
+      source: '1752113123348'
+      sourceHandle: source
+      target: '1752159563290'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1752159563290-source-1751443353746-target
+      source: '1752159563290'
+      sourceHandle: source
+      target: '1751443353746'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1752160388143-source-1752160311353-target
+      source: '1752160388143'
+      sourceHandle: source
+      target: '1752160311353'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1752160311353-source-1752160433587-target
+      source: '1752160311353'
+      sourceHandle: source
+      target: '1752160433587'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1751444057811-1752160245117-1752160952251-target
+      source: '1751444057811'
+      sourceHandle: '1752160245117'
+      target: '1752160952251'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1752160952251-source-1752160388143-target
+      source: '1752160952251'
+      sourceHandle: source
+      target: '1752160388143'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1751351389644'
+      position:
+        x: 30
+        y: 339.5
+      positionAbsolute:
+        x: 30
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - CxjDK+v6ZKUmIICm3gXvxeVnBtFWsqMsikJDABkB6BKRBq2j4jpobyFFBthKDPfb
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: ''
+            provider: ''
+          top_k: 4
+        query_variable_selector:
+        - '1752159563290'
+        - result
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 91
+      id: '1751443339144'
+      position:
+        x: 2793
+        y: 354
+      positionAbsolute:
+        x: 2793
+        y: 354
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not contains
+            id: 8b77b443-9ab9-4f39-86af-d719ca417880
+            value: 数据缺失
+            varType: string
+            variable_selector:
+            - '1752159563290'
+            - result
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1751443353746'
+      position:
+        x: 2034
+        y: 476
+      positionAbsolute:
+        x: 2034
+        y: 476
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1751443339144'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: e4cd8378-31bb-40bc-9b89-0de968434274
+          role: system
+          text: "{{#1752113221567.disease#}}{{#1752113221567.growth#}}{{#1752113123348.temperature#}}{{#1752113123348.humidity#}}{{#1752113123348.weather#}}{{#1752113123348.windLevel#}}{{#1752113221567.location#}}\n\
+            <xsl:stylesheet version=\"1.0\">\n<xsl:template match=\"/\">\n<strict_rules>\n\
+            1. 保持原始输出结构和顺序不变\n2. 所有已知参数必须显示实际值\n3. 缺失参数明确标注\"数据缺失\"\n4. 保留完整的参数修改提示\n\
+            </strict_rules>\n\n<!-- 知识库查询模块 -->\n<knowledge_query>\n<xsl:variable\
+            \ name=\"candidates\" select=\"知识库/农药[\n  病虫害名称=当前疾病 and \n  生长阶段=当前生长期\n\
+            ]\"/>\n<!-- 综合评估函数保持不变 -->\n</knowledge_query>\n\n<!-- 完整输出模板 -->\n<!--\
+            \ 输出模板（去标签版） -->\n<output_template>\n\n\n【最优方案】<xsl:value-of select=\"\
+            $best_pesticide/农药名称\"/>（<xsl:value-of select=\"$best_pesticide/剂型\"/>）\n\
+            ├─ 综合评分：<xsl:value-of select=\"format-number(综合评估($best_pesticide), '0.0')\"\
+            />/100\n├─ 经济生态评估：\n   │- \U0001F4B0 价格：<xsl:value-of select=\"$best_pesticide/价格\"\
+            />元/亩\n   │- ♻️ 毒性：<xsl:value-of select=\"$best_pesticide/毒性等级\"/>\n \
+            \  └- ⭐ 效果：<xsl:value-of select=\"string-join(for $i in 1 to $best_pesticide/效果评级\
+            \ return '★','')\"/>\n\n【标准施用量】\n├─ 农药用量：<xsl:value-of select=\"recommend_dose\"\
+            />/亩（固定基准值）\n├─ 天气适配：<xsl:value-of select=\"concat(天气,if(风级)then concat('/',风级,'级风')\
+            \ else '')\"/>\n└─ 技术参数：\n   • 稀释比例：1:<xsl:value-of select=\"$best_pesticide/稀释倍数\"\
+            />\n   • 安全间隔期：<xsl:value-of select=\"$best_pesticide/安全间隔期\"/>天\n\n\U0001F4A1\
+            \ 实用配比方案（按15升喷雾器计算）：\n<xsl:choose>\n  <xsl:when test=\"contains($best_pesticide/剂型,\
+            \ '悬浮剂')\">\n• 每桶加药 <xsl:value-of select=\"round(recommend_dose div $best_pesticide/稀释倍数\
+            \ * 15000)\"/>毫升 ≈ <xsl:value-of select=\"round(recommend_dose div $best_pesticide/稀释倍数\
+            \ * 15000 div 5)\"/>瓶盖（标准5ml瓶盖）\n  </xsl:when>\n  <xsl:when test=\"contains($best_pesticide/剂型,\
+            \ '可湿性粉剂')\">\n• 每桶加药 <xsl:value-of select=\"round(recommend_dose div\
+            \ $best_pesticide/稀释倍数 * 15000)\"/>克 ≈ <xsl:value-of select=\"round(recommend_dose\
+            \ div $best_pesticide/稀释倍数 * 15000 div 10)\"/>汤匙（标准10g量匙）\n  </xsl:when>\n\
+            </xsl:choose>\n\n【候选药剂对比】\n1. <xsl:value-of select=\"$candidates[1]/农药名称\"\
+            />（评分：<xsl:value-of select=\"format-number(综合评估($candidates[1]), '0.0')\"\
+            />）\n2. <xsl:value-of select=\"$candidates[2]/农药名称\"/>（评分：<xsl:value-of\
+            \ select=\"format-number(综合评估($candidates[2]), '0.0')\"/>）\n3. <xsl:value-of\
+            \ select=\"$candidates[3]/农药名称\"/>（评分：<xsl:value-of select=\"format-number(综合评估($candidates[3]),\
+            \ '0.0')\"/>）\n\n\U0001F33E 请提供以下信息完成定制方案：\n• 种植面积（示例：3亩/0.2公顷）\n• 施药器械类型（背负式/拖拉机喷雾）\n\
+            \n\U0001F4DD 参数修正指令：\n当前设置：<xsl:value-of select=\"concat(疾病,' ',生长期,'\
+            \ ',温度,'℃ ',湿度,'% ',天气,' ',风级,'级 ',地点)\"/>\n修改示例：\"将湿度调整为85%\" 或 \"更改生长期为抽雄期\"\
+            \n\n支持药剂方案更换\n修改示例：\n”药品改为嘧菌酯“\n</output_template>\n\n</xsl:template>\n\
+            </xsl:stylesheet>"
+        selected: false
+        title: LLM 搜索（1）
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1751443362510'
+      position:
+        x: 3127
+        y: 354
+      positionAbsolute:
+        x: 3127
+        y: 354
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1751443362510.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 104
+      id: '1751443366855'
+      position:
+        x: 3461
+        y: 354
+      positionAbsolute:
+        x: 3461
+        y: 354
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1752029610846.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 104
+      id: '1751443378554'
+      position:
+        x: 3127
+        y: 488.5
+      positionAbsolute:
+        x: 3127
+        y: 488.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 与地点，病害，作物，生长温度，湿度相关
+        - id: '2'
+          name: 与地有多大，多少亩地有关
+        - id: '1752124151349'
+          name: 在更改参数，如更改地点，疾病，生长期
+        - id: '1752160245117'
+          name: 和更改药物有关
+        desc: ''
+        instruction: "<xsl:stylesheet version=\"1.0\">\n<xsl:template match=\"/\"\
+          >\n<classification_rules>\n1. 优先级判断：\n   ● 含亩数/面积数字 → 直接分类2\n   ● 含农药计算关键词\
+          \ → 分类2\n   ● 含病虫害/环境关键词 → 分类1\n\n2. 分类1特征词：\n   - 病害相关：病斑/腐烂/霉变/虫孔/萎蔫\n\
+          \   - 生长阶段：苗期/拔节/抽穗/灌浆\n   - 环境相关：温度/湿度/下雨/干旱\n\n3. 分类2特征词：\n   - 数量相关：亩/公顷/平方米/多少地\n\
+          \   - 计算相关：总共要/需要多少/配多少药\n   - 容器相关：桶/箱/瓶/包\n\n4. 混合情况处理：\n   - 同时含两类特征\
+          \ → 拆分为两个问题处理\n   - 模糊表述 → 要求用户澄清\n</classification_rules>\n\n<examples>\n\
+          <案例1>\n输入：玉米叶子有锈斑，现在抽雄期\n分类：1（含\"锈斑\"+\"抽雄期\"）\n\n<案例2>\n输入：我有5亩地需要多少药\n\
+          分类：2（含\"5亩\"+\"多少药\"）\n\n<案例3>\n输入：打药后下雨有影响吗\n分类：1（环境相关）\n\n<案例4>\n输入：10公斤药能打多少亩地\n\
+          分类：2（含\"亩\"+\"多少\"）\n\n<特殊案例>\n输入：叶子有病斑，另外我有3亩地\n处理：拆分为：\n1. 叶子有病斑（分类1）\n\
+          2. 3亩地用药量（分类2）\n</examples>\n\n<output_format>\n<分类结果>\n  <type>1/2</type>\n\
+          \  <reason>分类依据说明</reason>\n</分类结果>\n</output_format>\n</xsl:template>\n\
+          </xsl:stylesheet>"
+        instructions: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        query_variable_selector:
+        - '1751351389644'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 279
+      id: '1751444057811'
+      position:
+        x: 364
+        y: 339.5
+      positionAbsolute:
+        x: 364
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 4d33d3a6-9bfb-4477-afa2-5f1e3671e88f
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            根据已知的药物用量和输入的亩地数，计算总用药量。请按照以下步骤操作：
+
+
+            1. 确认已知的药物用量（单位：克/亩或毫升/亩）。
+
+            2. 获取用户输入的亩地数（单位：亩）。
+
+            3. 将药物用量与亩地数相乘，得到总用药量。
+
+            4. 确保输出结果的单位与药物用量的单位一致（例如，克或毫升）。
+
+            5. 输出结果时，仅提供数值和单位，不要包含任何XML标签或其他无关信息。
+
+
+            注意事项：
+
+            - 如果药物用量或亩地数为零或负数，需提示用户输入无效。
+
+            - 如果输入值包含非数字字符，需提示用户输入格式错误。
+
+            - 输出结果应简洁明了，避免冗余信息。
+
+            </instruction>
+
+
+            <examples>
+
+            <example>
+
+            输入：
+
+            - 药物用量：50克/亩
+
+            - 亩地数：10亩
+
+
+            输出：
+
+            500克
+
+            </example>
+
+
+            <example>
+
+            输入：
+
+            - 药物用量：100毫升/亩
+
+            - 亩地数：5亩
+
+
+            输出：
+
+            500毫升
+
+            </example>
+
+
+            <example>
+
+            输入：
+
+            - 药物用量：30克/亩
+
+            - 亩地数：0亩
+
+
+            输出：
+
+            输入无效，亩地数必须大于零。
+
+            </example>
+
+            </examples>
+
+
+            <additional_notes>
+
+            1. 如果药物用量或亩地数为小数，计算结果应保留两位小数。
+
+            2. 如果用户未提供单位，默认使用“克”作为单位。
+
+            3. 确保计算过程准确无误，避免因四舍五入导致的误差。
+
+            </additional_notes>
+
+            ```'
+        selected: false
+        title: LLM 计算
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1751861116554'
+      position:
+        x: 698
+        y: 339.5
+      positionAbsolute:
+        x: 698
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1751861116554.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 104
+      id: '1751861264603'
+      position:
+        x: 1032
+        y: 339.5
+      positionAbsolute:
+        x: 1032
+        y: 339.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: fengbai
+        desc: ''
+        height: 528
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"1.根据用户输入让deepseek判断属于原本输入，更改内容还是追问内容","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"2.在原始输入和更改内容会摄取地点，玉米疾病，玉米生长期三个参数，地点通过阿里云得到当地的湿度，温度，风级，天气信息四个参数","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"3.如果7个数据均已得到则进入知识库，反之追问循环","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"4.知识库包含了数据库内容，包括疾病对应的药品，施用方法以及药品在不同状态下的计算公式，还有药品的价格，效果，毒性信息","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"5.LLM2包含风级的用药计算公式，在查找完知识库后根据记忆内容输出天气信息，用药量，人性化用药标准（用矿泉水瓶盖等），并追问是否需要根据总亩数计算药量和更改参数（暂不支持更改天气的四个参数）","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"6.追问总亩数回答后到LLM3计算总药量","type":"text","version":1},{"type":"linebreak","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"7.更改参数回到LLM1循环","type":"text","version":1},{"type":"linebreak","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"8.如需更改方案，支持输入”更改为/使用（药剂）“","type":"text","version":1},{"type":"linebreak","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"注：","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"LLM1分为了提取和组合两个部分：","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"LLM提取
+          用来保留记忆功能，实现追问和更改;   ","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"LLM组合
+          用来将七个参数组合传递到下一个节点（LLM组合已更新为代码代替）","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"地点最低为县级","type":"text","version":1},{"type":"linebreak","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"不可三输入同时更新（已改进，现在支持）","type":"text","version":1},{"type":"linebreak","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"更改时间：2025/7/10  23：43","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 862
+      height: 528
+      id: '1751861330961'
+      position:
+        x: 1465.8014831817368
+        y: -90.07938990709599
+      positionAbsolute:
+        x: 1465.8014831817368
+        y: -90.07938990709599
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 862
+    - data:
+        answer: '{{#1752159563290.result#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 104
+      id: '1751974776081'
+      position:
+        x: 2459
+        y: 354
+      positionAbsolute:
+        x: 2459
+        y: 354
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752159563290'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 4a5ca476-6c22-46de-8513-4bd657ff49d8
+          role: system
+          text: "<instruction>\n1. 任务目标：根据用户提供的参数缺失情况，生成对应的数据补充提示，严格禁止输出任何防治方案。\n\
+            2. 处理逻辑：\n   - 第一优先级：检查\"疾病\"参数是否缺失或值为\"数据缺失\"\n   - 第二优先级：检查\"生长期\"参数是否缺失或值为\"\
+            数据缺失\"\n   - 第三优先级：检查\"地点\"参数是否缺失或值为\"数据缺失\"\n   - 第四优先级：当地点存在但温度/湿度任一缺失时触发\n\
+            3. 输出要求：\n   - 必须使用中文双引号包裹完整回复内容\n   - 每个选项前使用特定符号标记（●/★/数字）\n   - 必须包含\"\
+            示例输入\"引导格式\n   - 禁止输出XML/HTML标签\n4. 异常处理：\n   - 若多个参数同时缺失，按上述优先级顺序响应\n\
+            \   - 若参数完整但值为空，视为数据缺失\n</instruction>\n\n<response_template>\n{{#if (not\
+            \ 疾病) or (eq 疾病 \"数据缺失\")}}\n\"需要补充病虫害信息：\n请选择或描述以下症状：\n● 玉米斑病（匹配词：大斑病/小斑病/叶片褐斑）\n\
+            ● 玉米锈病（匹配词：锈斑/铁锈色粉末）\n● 玉米黑粉病（匹配词：黑粉包/瘤状物）\n● 玉米根腐病（匹配词：烂根/根发黑）\n● 玉米苗枯病（匹配词：死苗/苗基部腐烂）\n\
+            ● 玉米螟（匹配词：蛀孔/钻心虫）\n● 玉米黏虫（匹配词：吃叶虫/叶片缺刻）\n● 玉米蓟马（匹配词：银白色条纹）\n示例输入：玉米叶片有锈斑\"\
+            \n\n{{#elseif (not 生长期) or (eq 生长期 \"数据缺失\")}}\n\"需要确认生长阶段：\n可选阶段：\n★\
+            \ 苗期（匹配词：小苗/3-5片叶）\n★ 拔节期（匹配词：茎秆伸长）\n★ 抽雄期（匹配词：抽穗/吐丝）\n★ 灌浆期（匹配词：籽粒乳熟）\n\
+            ★ 成熟期（匹配词：叶片发黄）\n示例输入：拔节期\"\n\n{{#elseif (not 地点) or (eq 地点 \"数据缺失\")}}\n\
+            \"需要提供地理位置：\n格式要求：\n- 市级：北京市\n- 区县级：昌平区\n或说'使用当前位置'\n示例输入：河南省周口市\"\n\n\
+            {{#elseif (and 地点 (neq 地点 \"数据缺失\") (or (not 温度) (not 湿度))}}\n\"气象数据获取失败\n\
+            可选择操作：\n1. 输入'重新获取天气'尝试刷新\n2. 手动输入当前天气（格式：温度/湿度）\n示例输入：28℃/65%\"\n{{/if}}\n\
+            </response_template>\n\n<examples>\n<example>\n输入：{\"疾病\":\"数据缺失\"}\n\
+            输出：\"需要补充病虫害信息：\n请选择或描述以下症状：\n● 玉米斑病（匹配词：大斑病/小斑病/叶片褐斑）\n● 玉米锈病（匹配词：锈斑/铁锈色粉末）\n\
+            ● 玉米黑粉病（匹配词：黑粉包/瘤状物）\n● 玉米根腐病（匹配词：烂根/根发黑）\n● 玉米苗枯病（匹配词：死苗/苗基部腐烂）\n● 玉米螟（匹配词：蛀孔/钻心虫）\n\
+            ● 玉米黏虫（匹配词：吃叶虫/叶片缺刻）\n● 玉米蓟马（匹配词：银白色条纹）\n示例输入：玉米叶片有锈斑\"\n</example>\n\n\
+            <example>\n输入：{\"疾病\":\"玉米螟\",\"生长期\":\"\"}\n输出：\"需要确认生长阶段：\n可选阶段：\n★\
+            \ 苗期（匹配词：小苗/3-5片叶）\n★ 拔节期（匹配词：茎秆伸长）\n★ 抽雄期（匹配词：抽穗/吐丝）\n★ 灌浆期（匹配词：籽粒乳熟）\n\
+            ★ 成熟期（匹配词：叶片发黄）\n示例输入：拔节期\"\n</example>\n\n<example>\n输入：{\"地点\":\"数据缺失\"\
+            ,\"温度\":\"30\"}\n输出：\"需要提供地理位置：\n格式要求：\n- 市级：北京市\n- 区县级：昌平区\n或说'使用当前位置'\n\
+            示例输入：河南省周口市\"\n</example>\n\n<example>\n输入：{\"地点\":\"昌平区\",\"湿度\":\"\"\
+            }\n输出：\"气象数据获取失败\n可选择操作：\n1. 输入'重新获取天气'尝试刷新\n2. 手动输入当前天气（格式：温度/湿度）\n示例输入：28℃/65%\"\
+            \n</example>\n</examples>\n\n<format_specification>\n1. 疾病提示格式：\n   -\
+            \ 标题：\"需要补充病虫害信息：\"\n   - 症状列表：每行以●开头，包含正式病名和括号内匹配词\n   - 示例后缀：\"示例输入：\"\
+            +典型症状描述\n\n2. 生长期提示格式：\n   - 标题：\"需要确认生长阶段：\"\n   - 阶段列表：每行以★开头，包含阶段名和括号内匹配词\n\
+            \   - 示例后缀：\"示例输入：\"+典型阶段名\n\n3. 地点提示格式：\n   - 标题：\"需要提供地理位置：\"\n   -\
+            \ 格式说明：以\"-\"开头的条目化要求\n   - 特殊选项：\"或说'使用当前位置'\"\n   - 示例后缀：\"示例输入：\"+标准地名\n\
+            \n4. 气象提示格式：\n   - 标题：\"气象数据获取失败\"\n   - 操作列表：数字编号的选项\n   - 格式说明：\"（格式：温度/湿度）\"\
+            \n   - 示例后缀：\"示例输入：\"+标准格式数据\n</format_specification>"
+        selected: false
+        title: LLM 追问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752029610846'
+      position:
+        x: 2793
+        y: 497
+      positionAbsolute:
+        x: 2793
+        y: 497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import urllib.parse\nimport urllib.request\nimport json\nimport ssl\n\
+          \ndef main(location: str) -> dict:\n    # 如果location是\"数据缺失\"，直接返回\n   \
+          \ if location == \"数据缺失\":\n        return {\n            \"weather\": \"\
+          数据缺失\",\n            \"temperature\": \"数据缺失\",\n            \"humidity\"\
+          : \"数据缺失\",\n            \"windLevel\": \"数据缺失\"\n        }\n    \n    #\
+          \ 创建不验证SSL的上下文（针对某些环境问题）\n    ssl_context = ssl._create_unverified_context()\n\
+          \    \n    # 配置API参数\n    host = 'https://ali-weather.showapi.com'\n   \
+          \ path = '/area-to-weather'\n    appcode = 'cecca0586c5343d1ac5180ed6329f32b'\n\
+          \    \n    # 构造查询参数（确保城市名称正确编码）\n    query_params = urllib.parse.urlencode({\n\
+          \        'area': location,\n        'needMoreDay': '0',\n        'needIndex':\
+          \ '0',\n        'need3HourForcast': '0',\n        'needAlarm': '0',\n  \
+          \      'needHourData': '0'\n    })\n    \n    # 构建完整URL\n    url = f\"{host}{path}?{query_params}\"\
+          \n    \n    try:\n        # 创建请求对象\n        request = urllib.request.Request(url)\n\
+          \        request.add_header('Authorization', f'APPCODE {appcode}')\n   \
+          \     \n        # 发送请求\n        with urllib.request.urlopen(request, context=ssl_context)\
+          \ as response:\n            raw_data = response.read().decode('utf-8')\n\
+          \            data = json.loads(raw_data)\n            \n            # 检查API响应状态\n\
+          \            if data.get('showapi_res_code') != 0:\n                error_msg\
+          \ = data.get('showapi_res_error', 'API未返回具体错误信息')\n                return\
+          \ {\n                    \"weather\": \"数据缺失\",\n                    \"\
+          temperature\": \"数据缺失\",\n                    \"humidity\": \"数据缺失\",\n\
+          \                    \"windLevel\": \"数据缺失\",\n                    \"error\"\
+          : f\"API错误: {error_msg}\"\n                }\n            \n           \
+          \ # 直接提取实时天气数据\n            now_data = data['showapi_res_body']['now']\n\
+          \            \n            return {\n                \"weather\": now_data.get('weather',\
+          \ '数据缺失'),\n                \"temperature\": f\"{now_data.get('temperature',\
+          \ 'N/A')}℃\" if now_data.get('temperature') else \"数据缺失\",\n           \
+          \     \"humidity\": now_data.get('sd', '数据缺失'),\n                \"windLevel\"\
+          : now_data.get('wind_power', '数据缺失')\n            }\n    \n    except Exception\
+          \ as e:\n        return {\n            \"weather\": \"数据缺失\",\n        \
+          \    \"temperature\": \"数据缺失\",\n            \"humidity\": \"数据缺失\",\n \
+          \           \"windLevel\": \"数据缺失\",\n            \"error\": f\"请求异常: {str(e)}\"\
+          \n        }"
+        code_language: python3
+        desc: ''
+        outputs:
+          humidity:
+            children: null
+            type: string
+          temperature:
+            children: null
+            type: string
+          weather:
+            children: null
+            type: string
+          windLevel:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1752113221567'
+          - location
+          variable: location
+      height: 53
+      id: '1752113123348'
+      position:
+        x: 1366
+        y: 476
+      positionAbsolute:
+        x: 1366
+        y: 476
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "<xsl:stylesheet version=\"1.0\">\n<xsl:template match=\"/\"\
+          >\n<!-- 时间处理 -->\n<xsl:variable name=\"current_time\" select=\"substring(#context#,1,16)\"\
+          />\n\n<strict_rules>\n1. 仅输出3参数：疾病,生长期,地点\n2. 禁止输出任何其他文本\n3. 缺失参数显示\"数据缺失\"\
+          \n</strict_rules>\n\n<parameter_options>\n<疾病 strict=\"true\">\n  ● 玉米斑病（匹配词：大斑病/小斑病/叶片褐斑）\n\
+          \  ● 玉米锈病（匹配词：锈斑/铁锈色粉末）\n  ● 玉米黑粉病（匹配词：黑粉包/瘤状物）\n  ● 玉米根腐病（匹配词：烂根/根发黑）\n\
+          \  ● 玉米苗枯病（匹配词：死苗/苗基部腐烂）\n  ● 玉米螟（匹配词：蛀孔/钻心虫）\n  ● 玉米黏虫（匹配词：吃叶虫/叶片缺刻）\n\
+          \  ● 玉米蓟马（匹配词：银白色条纹）\n</疾病>\n\n<生长期 strict=\"true\">\n  ★ 苗期（匹配词：小苗/3-5片叶）\n\
+          \  ★ 拔节期（匹配词：茎秆伸长）\n  ★ 抽雄期（匹配词：抽穗/吐丝）\n  ★ 灌浆期（匹配词：籽粒乳熟）\n  ★ 成熟期（匹配词：叶片发黄）\n\
+          </生长期>\n</parameter_options>\n\n<output>\n<xsl:variable name=\"disease\"\
+          \ select=\"if (疾病 and 疾病!='') then 疾病 else '数据缺失'\"/>\n<xsl:variable name=\"\
+          growth\" select=\"if (生長期 and 生長期!='') then 生長期 else '数据缺失'\"/>\n<xsl:variable\
+          \ name=\"location\" select=\"if (地点 and 地点!='') then 地点 else '数据缺失'\"/>\n\
+          \n<xsl:value-of select=\"concat(\n  $disease, ',',\n  $growth, ',',\n  $location\n\
+          )\"/>\n</output>\n</xsl:template>\n</xsl:stylesheet>"
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        parameters:
+        - description: 玉米疾病
+          name: disease
+          required: true
+          type: string
+        - description: 玉米生长期
+          name: growth
+          required: true
+          type: string
+        - description: 当前地点
+          name: location
+          required: true
+          type: string
+        query:
+        - '1752127223209'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752113221567'
+      position:
+        x: 1032
+        y: 483.5
+      positionAbsolute:
+        x: 1032
+        y: 483.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: f4713e1d-9317-46a3-bd97-cec1694b17c4
+          role: system
+          text: "<xsl:stylesheet version=\"1.0\">\n<xsl:template match=\"/\">\n<!--\
+            \ 记忆上下文初始化 -->\n<xsl:variable name=\"memory\" select=\"\n  if (/conversation/memory)\
+            \ then /conversation/memory\n  else document('')//default_memory\n\"/>\n\
+            \n<!-- 默认记忆存储 -->\n<default_memory>\n  <last_disease>数据缺失</last_disease>\n\
+            \  <last_growth>数据缺失</last_growth>\n  <last_location>数据缺失</last_location>\n\
+            </default_memory>\n\n<!-- 增强版输入解析 -->\n<xsl:variable name=\"raw_input\"\
+            \ select=\"normalize-space(#context#)\"/>\n\n<!-- 地点识别增强（支持中国所有县级行政区）\
+            \ -->\n<xsl:variable name=\"detected_location\">\n  <xsl:choose>\n   \
+            \ <!-- 显式参数修改指令 -->\n    <xsl:when test=\"contains($raw_input, '将地点更改为')\"\
+            >\n      <xsl:value-of select=\"normalize-space(substring-after($raw_input,\
+            \ '将地点更改为'))\"/>\n    </xsl:when>\n    <!-- 中国县级行政区正则匹配（简化版） -->\n   \
+            \ <xsl:when test=\"matches($raw_input, '([\\u4e00-\\u9fa5]{2,5}县|[\\u4e00-\\\
+            u9fa5]{2,5}区|[\\u4e00-\\u9fa5]{2,5}市)(\\s|$)')\">\n      <xsl:analyze-string\
+            \ select=\"$raw_input\" regex=\"([\\u4e00-\\u9fa5]{{2,5}}(?:县|区|市))\"\
+            >\n        <xsl:matching-substring>\n          <xsl:value-of select=\"\
+            regex-group(1)\"/>\n        </xsl:matching-substring>\n      </xsl:analyze-string>\n\
+            \    </xsl:when>\n    <!-- 未识别到地点时使用记忆值 -->\n    <xsl:otherwise>\n   \
+            \   <xsl:value-of select=\"$memory/last_location\"/>\n    </xsl:otherwise>\n\
+            \  </xsl:choose>\n</xsl:variable>\n\n<!-- 参数提取与记忆更新（严格模式） -->\n<xsl:variable\
+            \ name=\"current_disease\">\n  <xsl:choose>\n    <xsl:when test=\"疾病 and\
+            \ 疾病!='' and 疾病!='数据缺失'\">\n      <xsl:value-of select=\"疾病\"/>\n    </xsl:when>\n\
+            \    <!-- 仅当输入明确包含疾病特征时才使用记忆值 -->\n    <xsl:when test=\"contains($raw_input,\
+            \ '病') or contains($raw_input, '虫') or contains($raw_input, '斑')\">\n\
+            \      <xsl:value-of select=\"$memory/last_disease\"/>\n    </xsl:when>\n\
+            \    <xsl:otherwise>数据缺失</xsl:otherwise>\n  </xsl:choose>\n</xsl:variable>\n\
+            \n<xsl:variable name=\"current_growth\">\n  <xsl:choose>\n    <xsl:when\
+            \ test=\"生長期 and 生長期!=''\">\n      <xsl:value-of select=\"生長期\"/>\n  \
+            \  </xsl:when>\n    <xsl:otherwise>数据缺失</xsl:otherwise>\n  </xsl:choose>\n\
+            </xsl:variable>\n\n<!-- 最终地点确认（非空检查） -->\n<xsl:variable name=\"current_location\"\
+            >\n  <xsl:choose>\n    <xsl:when test=\"$detected_location != ''\">\n\
+            \      <xsl:value-of select=\"$detected_location\"/>\n    </xsl:when>\n\
+            \    <xsl:otherwise>数据缺失</xsl:otherwise>\n  </xsl:choose>\n</xsl:variable>\n\
+            \n<!-- 记忆存储更新 -->\n<update_memory>\n  <last_disease><xsl:value-of select=\"\
+            $current_disease\"/></last_disease>\n  <last_growth><xsl:value-of select=\"\
+            $current_growth\"/></last_growth>\n  <last_location><xsl:value-of select=\"\
+            $current_location\"/></last_location>\n  <timestamp><xsl:value-of select=\"\
+            substring(#context#,1,16)\"/></timestamp>\n</update_memory>\n\n<!-- 严格输出保证\
+            \ -->\n<output>\n  <xsl:value-of select=\"concat(\n    $current_disease,\
+            \ ',',\n    $current_growth, ',',\n    $current_location\n  )\"/>\n</output>\n\
+            \n<!-- 地点识别测试案例 -->\n<test_cases>\n  <case input=\"陇南徽县\">数据缺失,数据缺失,徽县</case>\n\
+            \  <case input=\"河南杞县\">数据缺失,数据缺失,杞县</case>\n  <case input=\"将地点更改为 甘肃礼县\"\
+            >数据缺失,数据缺失,甘肃礼县</case>\n  <case input=\"叶片有锈斑 石家庄\">玉米锈病,数据缺失,石家庄</case>\n\
+            \  <case input=\"库里\">数据缺失,数据缺失,数据缺失</case>\n</test_cases>\n</xsl:template>\n\
+            </xsl:stylesheet>"
+        selected: false
+        title: LLM 提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752127223209'
+      position:
+        x: 698
+        y: 476
+      positionAbsolute:
+        x: 698
+        y: 476
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(disease: str, growth: str, temperature: str, \n         humidity:\
+          \ str, weather: str, windLevel: str, \n         location: str) -> dict:\n\
+          \    \"\"\"\n    将七个参数按固定顺序拼接为字符串，用中文逗号分隔\n    \n    参数:\n        disease:\
+          \ 疾病\n        growth: 生长期\n        temperature: 温度\n        humidity: 湿度\n\
+          \        weather: 天气\n        windLevel: 风级\n        location: 地点\n    \n\
+          \    返回:\n        包含拼接结果的字典，如: {\"result\": \"玉米斑病,拔节期,25°,75%,晴,2级,昌平\"\
+          }\n    \"\"\"\n    # 拼接七个参数，用中文逗号分隔\n    result = f\"{disease},{growth},{temperature},{humidity},{weather},{windLevel},{location}\"\
+          \n    \n    # 返回结果字典（Dify工作流要求返回字典）\n    return {\n        \"result\": result\n\
+          \    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1752113123348'
+          - temperature
+          variable: temperature
+        - value_selector:
+          - '1752113123348'
+          - humidity
+          variable: humidity
+        - value_selector:
+          - '1752113123348'
+          - weather
+          variable: weather
+        - value_selector:
+          - '1752113123348'
+          - windLevel
+          variable: windLevel
+        - value_selector:
+          - '1752113221567'
+          - disease
+          variable: disease
+        - value_selector:
+          - '1752113221567'
+          - growth
+          variable: growth
+        - value_selector:
+          - '1752113221567'
+          - location
+          variable: location
+      height: 53
+      id: '1752159563290'
+      position:
+        x: 1700
+        y: 476
+      positionAbsolute:
+        x: 1700
+        y: 476
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752160388143'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 0c39b39c-1163-4d3d-be9a-de745beacccc
+          role: system
+          text: "{{#1752160952251.text#}}\n<xsl:stylesheet version=\"1.0\">\n<xsl:template\
+            \ match=\"/\">\n<strict_rules>\n1. 保持原始输出结构和顺序不变\n2. 所有已知参数必须显示实际值\n3.\
+            \ 缺失参数明确标注\"数据缺失\"\n4. 保留完整的参数修改提示\n5. 明确标注为非最优方案\n</strict_rules>\n\n\
+            <!-- 知识库查询模块 -->\n<knowledge_query>\n<xsl:variable name=\"candidates\"\
+            \ select=\"知识库/农药[\n  病虫害名称=当前疾病 and \n  生长阶段=当前生长期\n]\"/>\n<!-- 综合评估函数保持不变\
+            \ -->\n</knowledge_query>\n\n<!-- 完整输出模板 -->\n<!-- 输出模板（去标签版） -->\n<output_template>\n\
+            \n【调整后方案（非最优）】<xsl:value-of select=\"$adjusted_pesticide/农药名称\"/>（<xsl:value-of\
+            \ select=\"$adjusted_pesticide/剂型\"/>）\n⚠️ 注意：当前为人工调整方案，非系统推荐最优解\n├─ 综合评分：<xsl:value-of\
+            \ select=\"format-number(综合评估($adjusted_pesticide), '0.0')\"/>/100\n├─\
+            \ 经济生态评估：\n   │- \U0001F4B0 价格：<xsl:value-of select=\"$adjusted_pesticide/价格\"\
+            />元/亩\n   │- ♻️ 毒性：<xsl:value-of select=\"$adjusted_pesticide/毒性等级\"/>\n\
+            \   └- ⭐ 效果：<xsl:value-of select=\"string-join(for $i in 1 to $adjusted_pesticide/效果评级\
+            \ return '★','')\"/>\n\n【标准施用量】\n├─ 农药用量：<xsl:value-of select=\"adjusted_dose\"\
+            />/亩（调整后值）\n├─ 天气适配：<xsl:value-of select=\"concat(天气,if(风级)then concat('/',风级,'级风')\
+            \ else '')\"/>\n└─ 技术参数：\n   • 稀释比例：1:<xsl:value-of select=\"$adjusted_pesticide/稀释倍数\"\
+            />\n   • 安全间隔期：<xsl:value-of select=\"$adjusted_pesticide/安全间隔期\"/>天\n\
+            \n\U0001F4A1 实用配比方案（按15升喷雾器计算）：\n<xsl:choose>\n  <xsl:when test=\"contains($adjusted_pesticide/剂型,\
+            \ '悬浮剂')\">\n• 每桶加药 <xsl:value-of select=\"round(adjusted_dose div $adjusted_pesticide/稀释倍数\
+            \ * 15000)\"/>毫升 ≈ <xsl:value-of select=\"round(adjusted_dose div $adjusted_pesticide/稀释倍数\
+            \ * 15000 div 5)\"/>瓶盖（标准5ml瓶盖）\n  </xsl:when>\n  <xsl:when test=\"contains($adjusted_pesticide/剂型,\
+            \ '可湿性粉剂')\">\n• 每桶加药 <xsl:value-of select=\"round(adjusted_dose div $adjusted_pesticide/稀释倍数\
+            \ * 15000)\"/>克 ≈ <xsl:value-of select=\"round(adjusted_dose div $adjusted_pesticide/稀释倍数\
+            \ * 15000 div 10)\"/>汤匙（标准10g量匙）\n  </xsl:when>\n</xsl:choose>\n\n【系统推荐最优方案对比】\n\
+            1. <xsl:value-of select=\"$best_pesticide/农药名称\"/>（评分：<xsl:value-of select=\"\
+            format-number(综合评估($best_pesticide), '0.0')\"/>）\n   - 优势：<xsl:value-of\
+            \ select=\"$best_pesticide/优势说明\"/>\n\n【其他药剂】\n1. <xsl:value-of select=\"\
+            $candidates[1]/农药名称\"/>（评分：<xsl:value-of select=\"format-number(综合评估($candidates[1]),\
+            \ '0.0')\"/>）\n2. <xsl:value-of select=\"$candidates[2]/农药名称\"/>（评分：<xsl:value-of\
+            \ select=\"format-number(综合评估($candidates[2]), '0.0')\"/>）\n3. <xsl:value-of\
+            \ select=\"$candidates[3]/农药名称\"/>（评分：<xsl:value-of select=\"format-number(综合评估($candidates[3]),\
+            \ '0.0')\"/>）\n\n【当前环境参数】\n• 病害：<xsl:value-of select=\"疾病\"/>\n• 生长期：<xsl:value-of\
+            \ select=\"生长期\"/>\n• 环境：<xsl:value-of select=\"concat(温度,'℃ ',湿度,'% ',天气,'\
+            \ ',风级,'级风')\"/>\n• 地点：<xsl:value-of select=\"地点\"/>\n\n\U0001F4DD 参数修正指令：\n\
+            当前设置：<xsl:value-of select=\"concat(疾病,' ',生长期,' ',温度,'℃ ',湿度,'% ',天气,'\
+            \ ',风级,'级 ',地点)\"/>\n修改示例：\n”地点改为海淀“\n\n支持药剂方案更换\n修改示例：\n”药品改为嘧菌酯“\n</output_template>\n\
+            \n</xsl:template>\n</xsl:stylesheet>"
+        selected: false
+        title: LLM 其他方案
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752160311353'
+      position:
+        x: 1332
+        y: 657.7376019491466
+      positionAbsolute:
+        x: 1332
+        y: 657.7376019491466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - CxjDK+v6ZKUmIICm3gXvxeVnBtFWsqMsikJDABkB6BKRBq2j4jpobyFFBthKDPfb
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: ''
+            provider: ''
+          top_k: 4
+        query_variable_selector:
+        - '1752160952251'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 2
+        type: knowledge-retrieval
+      height: 91
+      id: '1752160388143'
+      position:
+        x: 1016.2105730860058
+        y: 657.7376019491466
+      positionAbsolute:
+        x: 1016.2105730860058
+        y: 657.7376019491466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1752160311353.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 104
+      id: '1752160433587'
+      position:
+        x: 1679.8015003286264
+        y: 657.7376019491466
+      positionAbsolute:
+        x: 1679.8015003286264
+        y: 657.7376019491466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 25499e25-40a8-4a02-bd0d-824fed9da8ca
+          role: system
+          text: "<instruction>\n请严格按以下规则处理八个参数：\n\n1. 参数顺序固定为：\n   - 疾病: {{disease||\"\
+            数据缺失\"}}\n   - 生长期: {{growth||\"数据缺失\"}}\n   - 温度: {{temperature||\"数据缺失\"\
+            }}\n   - 湿度: {{humidity||\"数据缺失\"}}\n   - 天气: {{weather||\"数据缺失\"}}\n\
+            \   - 风级: {{windLevel||\"数据缺失\"}}\n   - 地点: {{location||\"数据缺失\"}}\n \
+            \  - 药品: {{pesticide||\"数据缺失\"}}\n药品为输入中新的参数，请进行替换\n2. 格式要求：\n   - 参数间用中文逗号分隔\n\
+            \   - 保留原始单位符号（°、%、级等）\n   - 药品参数需保留完整名称（含剂型）\n   - 最终输出仅包含8个参数，不加任何说明\n\
+            \n3. 特殊处理：\n   - 地点参数必须验证存在性\n   - 药品参数需验证有效性（非空字符串）\n   - 空值/null/undefined均显示为\"\
+            数据缺失\"\n\n4. 示例：\n   <正常案例>\n   输入：\n   disease=\"玉米斑病\" \n   growth=\"\
+            拔节期\" \n   temperature=\"25°\" \n   humidity=\"80%\" \n   weather=\"多云\"\
+            \ \n   windLevel=\"3级\" \n   location=\"昌平\"\n   pesticide=\"戊唑醇悬浮剂\"\n\
+            \   \n   输出：\n   玉米斑病，拔节期，25°，80%，多云，3级，昌平，戊唑醇悬浮剂\n\n   <缺失案例>\n   输入：\n\
+            \   disease=null\n   growth=\"抽穗期\"\n   temperature=\"数据缺失\"\n   pesticide=undefined\n\
+            \   \n   输出：\n   数据缺失，抽穗期，数据缺失，数据缺失，数据缺失，数据缺失，数据缺失，数据缺失\n</instruction>"
+        selected: false
+        title: LLM 药品
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752160952251'
+      position:
+        x: 698
+        y: 657.7376019491466
+      positionAbsolute:
+        x: 698
+        y: 657.7376019491466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 134.17422289264357
+      y: 412.19915650917903
+      zoom: 0.2835781284832404
