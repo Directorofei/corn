@@ -1,0 +1,302 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 知识库检索
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.6@dd589dc093c8084925858034ab5ec1fdf0d33819f43226c2f8c4a749a9acbbb2
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1752199132040-source-llm-target
+      source: '1752199132040'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: llm-source-1752199468565-target
+      source: llm
+      sourceHandle: source
+      target: '1752199468565'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1752199468565-source-1752199550894-target
+      source: '1752199468565'
+      sourceHandle: source
+      target: '1752199550894'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1752199550894-source-answer-target
+      source: '1752199550894'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 66
+      id: '1752199132040'
+      position:
+        x: 83
+        y: 282
+      positionAbsolute:
+        x: 83
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: '问题如下：
+
+            {{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 65c62a25-7bd7-401c-b8ac-77f66dc8fc4e
+          role: system
+          text: '##任务
+
+            请你将用户给定的问题进行提取关键内容，用于进行检索知识库内容。
+
+            ##输出
+
+            输出多个关键字或者关键语句，关键字与关键语句之间用空格隔开，无需其他多余的文本，禁止直接回答用户的问题。
+
+            {{#context#}}'
+        selected: false
+        title: 提取关键内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 110
+      id: llm
+      position:
+        x: 513
+        y: 282
+      positionAbsolute:
+        x: 513
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1752199550894.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 122
+      id: answer
+      position:
+        x: 1628
+        y: 282
+      positionAbsolute:
+        x: 1628
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - rf9PdBEPlkShfJTzQXvPRqIUvbRqctuQmuzfxqtXMvmpwPJWd6oOI5m/x7hUzHr+
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: ''
+            provider: ''
+          top_k: 4
+        query_variable_selector:
+        - llm
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 106
+      id: '1752199468565'
+      position:
+        x: 856
+        y: 282
+      positionAbsolute:
+        x: 856
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752199468565'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: ac2f251d-daeb-4868-838b-dd9ae4cf04d1
+          role: system
+          text: '##角色
+
+            你是一个专业的知识库检索专家，擅长根据知识库的内容回答用户的问题
+
+            ##背景
+
+            严格根据知识库内容回答用户问题，对于用户理解私有文档十分重要。
+
+            ##任务
+
+            严格根据下面知识库的内容进行回答用户的问题。
+
+            ##知识库
+
+            {{#context#}}'
+        selected: false
+        title: 回答问题
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 110
+      id: '1752199550894'
+      position:
+        x: 1289
+        y: 282
+      positionAbsolute:
+        x: 1289
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -208.5
+      y: 22.5
+      zoom: 1
