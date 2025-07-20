@@ -1,4 +1,6 @@
 volumes/
 node_modules/
 out/
+qa_out/
+/crop-chat-app/server/static
 .next/
